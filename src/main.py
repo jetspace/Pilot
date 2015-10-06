@@ -59,3 +59,6 @@ if __name__ == "__main__":
             print(x)
     else:
         print("ERR: task not recognized [" + task + "]")
+        exit(1)
+
+    exit(0)

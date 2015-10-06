@@ -1,0 +1,5 @@
+sudo: required
+language: c
+
+before_install: bash install_deps_deb.sh
+script: bash test.sh
