@@ -4,7 +4,7 @@ cd temp
 
 #install python2
 sudo apt-get update -qq
-sudo apt-get install -qq libgtk-3-dev
+sudo apt-get install -qq libgtk-3-dev libsox-dev libcurl4-gnutls-dev 
 sudo apt-get install -qq python2.7
 
 #install pytz
