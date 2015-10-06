@@ -1,4 +1,4 @@
-build.sh
+bash build.sh
 if [ "$?" != "0" ]
 then
 exit 2

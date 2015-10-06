@@ -9,6 +9,7 @@ from InputHandler import InputHandler
 from TimeHandler import TimeHandler
 from TimeCheckHandler import TimeCheckHandler
 from WeatherHandler import WeatherHandler
+from PowerHandler import PowerHandler
 
 
 TOKEN="VADPZQ6RGSKSLDDF7NMRHZNPYLRDT56E"
@@ -57,6 +58,9 @@ if __name__ == "__main__":
         handle = TimeCheckHandler(inp.getValue())
         for x in handle.Result():
             print(x)
+    elif(task == 'computer_power'):
+        handle = PowerHandler(inp.getValue())
+        handle.perform()
     else:
         print("ERR: task not recognized [" + task + "]")
         exit(1)
