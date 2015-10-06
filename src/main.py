@@ -7,6 +7,7 @@ import time
 #Project Files
 from InputHandler import InputHandler
 from TimeHandler import TimeHandler
+from TimeCheckHandler import TimeCheckHandler
 from WeatherHandler import WeatherHandler
 
 
@@ -47,14 +48,14 @@ if __name__ == "__main__":
     if(task == 'time_places'):
         handle = TimeHandler(inp.getValue())
         for x in handle.lookup():
-            print("PILOT:TIMECONVERT")
             print(x)
-            print("PILOT:END")
-    if(task == 'weather_in'):
+    elif(task == 'weather_in'):
         handle = WeatherHandler(inp.getValue())
-        print("PILOT:WEATHER")
-        print(handle.printData())
-        print("PILOT:END")
-
+        for x in handle.printData():
+            print(x)
+    elif(task == 'check_time'):
+        handle = TimeCheckHandler(inp.getValue())
+        for x in handle.Result():
+            print(x)
     else:
         print("ERR: task not recognized [" + task + "]")

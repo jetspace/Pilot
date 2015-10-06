@@ -16,7 +16,6 @@ class TimeHandler:
     def __init__(self, value):
         self.value = value
         self.city = value['location'][0]['value'].title()
-
         self.checkDataBase()
 
     def checkDataBase(self):
@@ -38,7 +37,28 @@ class TimeHandler:
                             city = city.decode('utf-8').strip()
                             if(city):
                                 data[city].add(timezone)
-
         for name in data[self.city]:
             now = datetime.now(pytz.timezone(name))
-            yield str(now.strftime('%s')) + ',' + str(now.strftime('%Z%z')) + ',' + self.city + ','+ str(name)
+            #yield str(now.strftime('%s')) + ',' + str(now.strftime('%Z%z')) + ',' + self.city + ','+ str(name)
+            yield "PILOT:START"
+            yield "LABEL:<big><b>" + str(now.strftime('%H:%M')) + "</b></big>"
+            yield "LABEL:" + self.city;
+            yield "LABEL: <small><i>" + str(name) + "</i></small>"
+            yield "PILOT:END"
+
+    def lookupNoPrint(self):
+        data = defaultdict(set)
+        with ZipFile(tzdbdir + tzfile) as zf, zf.open(base + ".txt") as file:
+            for line in file:
+                fields = line.split(b'\t')
+                if(fields):
+                    name, asciiname, alternatenames = fields[1:4]
+                    timezone = fields[-2].decode('utf-8').strip()
+                    if(timezone):
+                        for city in [name, asciiname] + alternatenames.split(b','):
+                            city = city.decode('utf-8').strip()
+                            if(city):
+                                data[city].add(timezone)
+        self.results = {}
+        for name in data[self.city]:
+            self.results[self.city] = datetime.now(pytz.timezone(name))
