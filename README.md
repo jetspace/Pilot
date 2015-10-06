@@ -23,5 +23,5 @@ Currently there are the following options:
  
 ## Technology
 
-Pilot is based on GTK, Python, [wit.ai](wit.ai) and some more python modules.
+Pilot is based on GTK, Python, [wit.ai](http://wit.ai) and some more python modules.
 It comes with a GTK frontend (written in C) to control the (python) backend via GUI!
