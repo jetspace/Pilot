@@ -1,7 +1,7 @@
 bash build.sh
 if [ "$?" != "0" ]
 then
-exit 2
+echo "WARNING: build of graphical wrapper failed!"
 fi
 
 python2 src/main.py -t "current time in London?"
